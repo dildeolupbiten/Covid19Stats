@@ -78,8 +78,7 @@ class Entry(tk.Entry):
                 self.treeview.yview_moveto(
                     i / len(self.treeview.get_children())
                 )
-                
-                
+                     
     def button_3_on_entry(self):
         self.right_click.add_command(
             label="Copy",
