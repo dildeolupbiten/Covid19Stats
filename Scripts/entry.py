@@ -47,7 +47,7 @@ class Entry(tk.Entry):
     def popup(
             self,
             event: tk.Event = None,
-            func: callable = None
+            func = None
     ):
         self.popdown()
         if not self.treeview.selection():
