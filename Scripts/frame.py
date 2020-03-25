@@ -14,7 +14,6 @@ class Frame(tk.Frame):
         self.treeview = Treeview(master=self)
         self.entry = Entry(master=self.master, treeview=self.treeview)
         self.menu = Menu(master=self.master, treeview=self.treeview)
-        self.data = None
         self.treeview.bind(
             sequence="<Double-Button-1>",
             func=lambda event: self.double_button1_on_treeview()
@@ -29,5 +28,3 @@ class Frame(tk.Frame):
                         x=self.menu.times, 
                         y=tuple([int(j) for j in i[4:]]), title=item[1]
                     )
-
-
