@@ -3,16 +3,25 @@
 from .modules import plt, mean, array
    
     
-def plot_data(x: tuple = (), y: tuple = (), title: str = ""):
+def plot_data(
+        x: tuple = (), 
+        y: tuple = (), 
+        title: str = "", 
+        filename: str = ""
+):
     x = array(x)
     y = array(y)
+    if "confirmed" in filename:
+        label_variable = "Confirmed Cases"
+    else:
+        label_variable = "Deaths"
     ax1 = plt.subplot2grid((1, 1), (0, 0))
     ax1.plot_date(
         x=x,
         y=y,
         fmt="-",
         color="black",
-        label="Confirmed Cases",
+        label=label_variable,
         linewidth=0.7
     )
     ax1.fill_between(
@@ -53,7 +62,7 @@ def plot_data(x: tuple = (), y: tuple = (), title: str = ""):
         linewidth=1
     )
     plt.xlabel("Timeline")
-    plt.ylabel("Confirmed Cases")
+    plt.ylabel(label_variable)
     plt.title(title)
     plt.legend()
     plt.show()

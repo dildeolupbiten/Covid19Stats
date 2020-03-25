@@ -28,7 +28,8 @@ class Frame(tk.Frame):
                     plot_data(
                         x=self.menu.times, 
                         y=tuple([int(j) for j in i[4:]]), 
-                        title=item[1]
+                        title=item[1],
+                        filename=self.menu.filename
                     )
                     
 
