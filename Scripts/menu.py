@@ -16,8 +16,9 @@ class Menu(tk.Menu):
         self.times = None
         
     def open(self):
-        filename = ask(filetypes=[("CSV Files", ".csv")])
-        self.data = read_csv_file(filename=filename)
+        self.data = read_csv_file(
+            filename=ask(filetypes=[("CSV Files", ".csv")])
+        )
         self.times = tuple(
             dt.strptime(i + "20", "%m/%d/%Y") for i in self.data[0][4:]
         )
@@ -28,5 +29,3 @@ class Menu(tk.Menu):
                 index=i,
                 values=[j if j else None for j in self.columns[i]]
             )
-
-        
