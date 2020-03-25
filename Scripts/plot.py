@@ -57,3 +57,5 @@ def plot_data(x: tuple = (), y: tuple = (), title: str = ""):
     plt.title(title)
     plt.legend()
     plt.show()
+
+

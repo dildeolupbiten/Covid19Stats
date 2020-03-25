@@ -29,4 +29,5 @@ class Menu(tk.Menu):
                 index=i,
                 values=[j if j else None for j in self.columns[i]]
             )
+
   

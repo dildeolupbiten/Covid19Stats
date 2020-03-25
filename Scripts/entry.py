@@ -101,3 +101,4 @@ class Entry(tk.Entry):
             ).event_generate('<<Paste>>')
         )
 
+
