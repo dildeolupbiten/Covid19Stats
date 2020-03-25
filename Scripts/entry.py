@@ -73,7 +73,7 @@ class Entry(tk.Entry):
 
     def search_name(self):
         for i, j in enumerate(self.treeview.get_children()):
-            if self.get() == self.treeview.item(j)["values"][1].casefold():
+            if self.get().capitalize() == self.treeview.item(j)["values"][1]:
                 self.treeview.selection_set(j)
                 self.treeview.yview_moveto(
                     i / len(self.treeview.get_children())
