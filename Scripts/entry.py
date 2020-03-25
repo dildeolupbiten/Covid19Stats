@@ -72,9 +72,12 @@ class Entry(tk.Entry):
             )
 
     def search_name(self):
-        for i in self.treeview.get_children():
-            if self.get() == self.treeview.item(i)["values"][1]:
-                self.treeview.selection_set(i)
+        for i, j in enumerate(self.treeview.get_children()):
+            if self.get() == self.treeview.item(j)["values"][1].casefold():
+                self.treeview.selection_set(j)
+                self.treeview.yview_moveto(
+                    i / len(self.treeview.get_children())
+                )
                 
                 
     def button_3_on_entry(self):
