@@ -23,12 +23,12 @@ class Menu(tk.Menu):
             self.times = tuple(
                 dt.strptime(i + "20", "%m/%d/%Y") for i in self.data[0][4:]
             )
-            self.columns = [i[:4] for i in self.data[1:]]
+            columns = [i[:4] for i in self.data[1:]]
             for i, j in enumerate(self.data[1:]):
                 self.treeview.insert(
                     parent="",
                     index=i,
-                    values=[j if j else None for j in self.columns[i]]
+                    values=[j if j else None for j in columns[i]]
                 )
         except (FileNotFoundError, TypeError):
             pass
