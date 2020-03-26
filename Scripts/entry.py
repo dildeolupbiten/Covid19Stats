@@ -100,4 +100,3 @@ class Entry(tk.Entry):
             command=lambda: self.master.focus_get(
             ).event_generate('<<Paste>>')
         )
-
