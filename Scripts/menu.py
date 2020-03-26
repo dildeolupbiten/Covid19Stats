@@ -32,5 +32,4 @@ class Menu(tk.Menu):
                 )
         except (FileNotFoundError, TypeError):
             pass
-
   

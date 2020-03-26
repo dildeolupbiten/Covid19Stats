@@ -31,5 +31,4 @@ class Frame(tk.Frame):
                         title=item[1],
                         filename=self.menu.filename
                     )
-                    
 

@@ -47,7 +47,7 @@ class Entry(tk.Entry):
     def popup(
             self,
             event: tk.Event = None,
-            func = None
+            func=None
     ):
         self.popdown()
         if not self.treeview.selection():
@@ -100,5 +100,4 @@ class Entry(tk.Entry):
             command=lambda: self.master.focus_get(
             ).event_generate('<<Paste>>')
         )
-
 

@@ -67,4 +67,3 @@ def plot_data(
     plt.legend()
     plt.show()
 
-
