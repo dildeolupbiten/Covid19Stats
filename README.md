@@ -31,12 +31,6 @@ python Covid19Stats.py
 
 ## Screenshots
 
-![img1](https://user-images.githubusercontent.com/29302909/77498334-6b0ab100-6e60-11ea-8d05-e8a9d4026090.png)
+![img1](https://user-images.githubusercontent.com/29302909/77769439-e634b880-7054-11ea-8692-b986849cd010.png)
 
-![img2](https://user-images.githubusercontent.com/29302909/77498333-69d98400-6e60-11ea-8e30-c78c56871fcb.png)
-
-![img3](https://user-images.githubusercontent.com/29302909/77498328-680fc080-6e60-11ea-8e4d-67f94fbfc50f.png)
-
-![img4](https://user-images.githubusercontent.com/29302909/77496629-7825a100-6e5c-11ea-957b-1438766b797b.png)
-
-![img5](https://user-images.githubusercontent.com/29302909/77589957-b626d180-6efd-11ea-9261-ccd910f7c61c.png)
+![img2](https://user-images.githubusercontent.com/29302909/77769449-eaf96c80-7054-11ea-9bf3-df845a0b54ee.png)
