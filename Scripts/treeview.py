@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .modules import tk, Tv
+from .modules import dt, tk, Tv
+from .csv_reader import read_csv_file
 
 
 class Treeview(Tv):
@@ -38,6 +39,23 @@ class Treeview(Tv):
                 treeview=self,
                 col=i,
                 text=j
+            )
+        self.confirmed = "time_series_covid19_confirmed_global.csv"
+        self.deaths = "time_series_covid19_deaths_global.csv"
+        self.recovered = "time_series_covid19_recovered_global.csv"
+        self.confirmed_data = read_csv_file(filename=self.confirmed)
+        self.deaths_data = read_csv_file(filename=self.deaths)
+        self.recovered_data = read_csv_file(filename=self.recovered)
+        self.times = tuple(
+            dt.strptime(i + "20", "%m/%d/%Y") 
+            for i in self.confirmed_data[0][4:]
+        )
+        self.columns = [i[:4] for i in self.confirmed_data[1:]]
+        for i, j in enumerate(self.confirmed_data[1:]):
+            self.insert(
+                parent="",
+                index=i,
+                values=[j if j else None for j in self.columns[i]]
             )
 
     def _heading(
