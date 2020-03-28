@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from .copy_files import copy
 from .modules import ssl, urlopen, exists, listdir
 from .constants import (
     CONFIRMED, DEATHS, RECOVERED, 
     URL_CONFIRMED, URL_DEATHS, URL_RECOVERED
 )
+
+
+def copy_files(source: str = "", target: str = "", filename: str = ""):
+    with open(file=f"{source}/{filename}", mode="rb") as read:
+        with open(file=f"{target}/{filename}", mode="wb") as write:
+            write.write(read.read())
 
 
 def get_data(url: str = ""):
@@ -19,7 +24,9 @@ def write_content(name: str = "", filename: str = "", url: str = ""):
     if data != open(f"Latest_Files/{filename}", "rb").read():
         with open(filename, "wb") as csv:
             csv.write(data)
-        copy(source=".", target="Latest_Files", filename=filename)
+        copy_files(source=".", target="Latest_Files", filename=filename)
+    else:
+        copy_files(source="Latest_Files", target=".", filename=filename)
 
 
 def download():   
