@@ -113,7 +113,7 @@ class Frame(tk.Frame):
                     if not proportion:
                         plot_data(
                             x=self.treeview.times, 
-                            y=tuple([int(j) for k in j[4:]]),
+                            y=tuple([int(k) for k in j[4:]]),
                             country=item[1],
                             title=title
                         )
