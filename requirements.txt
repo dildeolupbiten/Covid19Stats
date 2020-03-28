@@ -1,4 +1,2 @@
 numpy
 matplotlib
-requests
-beautifulsoup4
