@@ -31,14 +31,6 @@ python Covid19Stats.py
 
 ## Screenshots
 
-![italy_confirmed](https://user-images.githubusercontent.com/29302909/77831612-4bfe6e80-7141-11ea-9607-2749f0f3b72a.png)
+![img1](https://user-images.githubusercontent.com/29302909/77769439-e634b880-7054-11ea-8692-b986849cd010.png)
 
-![italy_deaths](https://user-images.githubusercontent.com/29302909/77831611-499c1480-7141-11ea-9c77-1772543ff1c7.png)
-
-![italy_recovered](https://user-images.githubusercontent.com/29302909/77831610-46a12400-7141-11ea-9e27-5fc81205565a.png)
-
-![italy_deaths_confirmed](https://user-images.githubusercontent.com/29302909/77831607-43a63380-7141-11ea-9980-15dc51bbef90.png)
-
-![italy_recovered_confirmed](https://user-images.githubusercontent.com/29302909/77831604-3db05280-7141-11ea-8fa2-7a9d572893b1.png)
-
-![italy_recovered_deaths](https://user-images.githubusercontent.com/29302909/77831601-3a1ccb80-7141-11ea-8f1c-2847e80007d7.png)
+![img2](https://user-images.githubusercontent.com/29302909/77769449-eaf96c80-7054-11ea-9bf3-df845a0b54ee.png)

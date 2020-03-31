@@ -106,24 +106,30 @@ class Frame(tk.Frame):
             item = self.treeview.item(self.treeview.selection())["values"]
             if proportion:
                 data, _data = data[0], data[1]
+                values = [(), ()]
+                for i, j in enumerate(data[1:]):
+                    if item[1] == j[1]:
+                        values[0] = [int(k) for k in j[4:]]
+                for i, j in enumerate(_data[1:]):
+                    if item[1] == j[1]:
+                        values[1] = [int(k) for k in j[4:]]
+                plot_data(
+                    x=self.treeview.times, 
+                    y=self.proportion(
+                        x=tuple(values[1]),
+                        y=tuple(values[0]),
+                    ),
+                    country=item[1],
+                    title=title
+                )  
             else:
                 data, _data = data, None
-            for i, j in enumerate(data[1:]):
-                if item[1] == j[1]:
-                    if not proportion:
+                for i, j in enumerate(data[1:]):
+                    if item[1] == j[1]:
                         plot_data(
                             x=self.treeview.times, 
                             y=tuple([int(k) for k in j[4:]]),
                             country=item[1],
                             title=title
                         )
-                    else:
-                        plot_data(
-                            x=self.treeview.times, 
-                            y=self.proportion(
-                                x=[int(k) for k in _data[1:][i][4:]],
-                                y=[int(k) for k in data[1:][i][4:]]
-                            ),
-                            country=item[1],
-                            title=title
-                        )
+
