@@ -5,9 +5,14 @@ from .csv_reader import read_csv_file
 
 
 class Treeview(Tv):
-    def __init__(self, *args, **kwargs):
+    def __init__(
+            self, csv: bool = True, 
+            columns: tuple = (), 
+            *args, **kwargs
+    ):
         super().__init__(*args, **kwargs)
         self.pack(fill="y")
+        self.csv = csv
         self.y_scrollbar = tk.Scrollbar(
             master=self.master,
             orient=tk.VERTICAL,
@@ -15,12 +20,7 @@ class Treeview(Tv):
         self.configure(yscrollcommand=self.y_scrollbar.set)
         self.y_scrollbar.configure(command=self.yview)
         self.y_scrollbar.pack(side=tk.LEFT, fill=tk.Y)
-        self.columns = [
-            "Province/State",
-            "Country/Region",
-            "Latitude",
-            "Longitude"
-        ]
+        self.columns = columns
         self.configure(
             show="headings",
             columns=[f"#{i + 1}" for i in range(len(self.columns))],
@@ -32,7 +32,7 @@ class Treeview(Tv):
             self.column(
                 column=f"#{i + 1}",
                 minwidth=100,
-                width=140,
+                width=210,
                 anchor=tk.CENTER
             )
             self._heading(
@@ -40,23 +40,24 @@ class Treeview(Tv):
                 col=i,
                 text=j
             )
-        self.confirmed = "time_series_covid19_confirmed_global.csv"
-        self.deaths = "time_series_covid19_deaths_global.csv"
-        self.recovered = "time_series_covid19_recovered_global.csv"
-        self.confirmed_data = read_csv_file(filename=self.confirmed)
-        self.deaths_data = read_csv_file(filename=self.deaths)
-        self.recovered_data = read_csv_file(filename=self.recovered)
-        self.times = tuple(
-            dt.strptime(i + "20", "%m/%d/%Y") 
-            for i in self.confirmed_data[0][4:]
-        )
-        self.columns = [i[:4] for i in self.confirmed_data[1:]]
-        for i, j in enumerate(self.confirmed_data[1:]):
-            self.insert(
-                parent="",
-                index=i,
-                values=[j if j else None for j in self.columns[i]]
+        if self.csv:
+            self.confirmed = "time_series_covid19_confirmed_global.csv"
+            self.deaths = "time_series_covid19_deaths_global.csv"
+            self.recovered = "time_series_covid19_recovered_global.csv"
+            self.confirmed_data = read_csv_file(filename=self.confirmed)
+            self.deaths_data = read_csv_file(filename=self.deaths)
+            self.recovered_data = read_csv_file(filename=self.recovered)
+            self.times = tuple(
+                dt.strptime(i + "20", "%m/%d/%Y") 
+                for i in self.confirmed_data[0][4:]
             )
+            self.columns = [i[:4] for i in self.confirmed_data[1:]]
+            for i, j in enumerate(self.confirmed_data[1:]):
+                self.insert(
+                    parent="",
+                    index=i,
+                    values=[j if j else None for j in self.columns[i]]
+                )
 
     def _heading(
             self,
