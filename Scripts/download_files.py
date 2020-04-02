@@ -14,19 +14,25 @@ def copy_files(source: str = "", target: str = "", filename: str = ""):
 
 
 def get_data(url: str = ""):
-    return urlopen(
-        url=url,
-        context=ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-    )
+    try:
+        return urlopen(
+            url=url,
+            context=ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+        ).read()
+    except:
+        return
 
 def write_content(name: str = "", filename: str = "", url: str = ""):
-    data = get_data(url=url).read()
-    if data != open(f"Latest_Files/{filename}", "rb").read():
-        with open(filename, "wb") as csv:
-            csv.write(data)
-        copy_files(source=".", target="Latest_Files", filename=filename)
-    else:
+    data = get_data(url=url)
+    if not data:
         copy_files(source="Latest_Files", target=".", filename=filename)
+    else:
+        if data != open(f"Latest_Files/{filename}", "rb").read():
+            with open(filename, "wb") as csv:
+                csv.write(data)
+            copy_files(source=".", target="Latest_Files", filename=filename)
+        else:
+            copy_files(source="Latest_Files", target=".", filename=filename)
 
 
 def download():   
