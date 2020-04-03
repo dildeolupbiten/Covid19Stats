@@ -48,10 +48,7 @@ class Spreadsheet(Workbook):
             self.sheet.merge_range(
                 f"{self.cols[n]}1:{self.cols[n + 2]}1",
                 i,
-                self.format(
-                    align="center",
-                    bold=True
-                )
+                self.format(align="center", bold=True)
             )
             n += 3
         for i, cols in enumerate(self.data, 2):
@@ -60,8 +57,6 @@ class Spreadsheet(Workbook):
                 self.sheet.merge_range(
                     f"{self.cols[n]}{i}:{self.cols[n + 2]}{i}",
                     col,
-                    self.format(
-                        align="center",
-                    )
+                    self.format(align="center")
                 )
                 n += 3
