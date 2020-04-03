@@ -198,7 +198,7 @@ class Menu:
                                 j,
                                 f"{round(increase_rate, 2)} %",
                                 f"{round(sum(mean) / len(mean), 2)} %",
-                                f"{self.predict(j, increase_rate, 1)}"
+                                self.predict(j, increase_rate, 1)
                             ]
                             treeview.insert(
                                 parent="",
