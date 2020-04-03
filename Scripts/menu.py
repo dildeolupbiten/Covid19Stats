@@ -118,7 +118,17 @@ class Menu:
                 result.append(x[i] / y[i] * 100)
             except ZeroDivisionError:
                 result.append(0)
-        return result               
+        return result
+    
+    def predict(self, case, increase, day):
+        if not day:
+            return int(case)
+        else:
+            return self.predict(
+                case + (case * increase / 100), 
+                increase, 
+                day - 1
+            )             
               
     def view_data(
             self, 
@@ -162,6 +172,7 @@ class Menu:
                             title,
                             "Increase Percent",
                             "Mean Increase Percent",
+                            "Prediction of the next day"
                         )
                         treeview = Treeview(
                             master=frame, 
@@ -187,6 +198,7 @@ class Menu:
                                 j,
                                 f"{round(increase_rate, 2)} %",
                                 f"{round(sum(mean) / len(mean), 2)} %",
+                                f"{self.predict(j, increase_rate, 1)}"
                             ]
                             treeview.insert(
                                 parent="",
