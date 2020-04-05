@@ -181,7 +181,7 @@ class Menu:
                         )
                         mean = []
                         all_data = []
-                        for ind, (i, j) in enumerate(
+                        for ind, (i_, j_) in enumerate(
                                 zip(self.treeview.times, values)
                         ):
                             try:
@@ -194,11 +194,11 @@ class Menu:
                                 increase_rate = 0
                             mean.append(increase_rate)
                             row_data = [
-                                i.strftime('%Y.%m.%d'),
-                                j,
+                                i_.strftime('%Y.%m.%d'),
+                                j_,
                                 f"{round(increase_rate, 2)} %",
                                 f"{round(sum(mean) / len(mean), 2)} %",
-                                self.predict(j, increase_rate, 1)
+                                self.predict(j_, increase_rate, 1)
                             ]
                             treeview.insert(
                                 parent="",
