@@ -14,6 +14,7 @@ class Menu:
         self.proportion = tk.Menu(master=self.master, tearoff=False)
         self.increase_rate = tk.Menu(master=self.master, tearoff=False)
         self.compare = tk.Menu(master=self.master, tearoff=False)
+        self.compare_proportion = tk.Menu(master=self.master, tearoff=False)
         self.master.add_cascade(
             label="View Case Graphs",
             menu=self.view
@@ -29,6 +30,10 @@ class Menu:
         self.master.add_cascade(
             label="Compare Case Graphs",
             menu=self.compare
+        )
+        self.master.add_cascade(
+            label="Compare Proportion Graphs",
+            menu=self.compare_proportion
         )
         self.view.add_command(
             label="Confirmed",
@@ -135,6 +140,39 @@ class Menu:
                 select="view-compare"
             )
         )
+        self.compare_proportion.add_command(
+            label="Deaths/Confirmed",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.confirmed_data,
+                    self.treeview.deaths_data
+                ],
+                title="Deaths/Confirmed",
+                select="proportion-compare"
+            )
+        )
+        self.compare_proportion.add_command(
+            label="Recovered/Confirmed",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.confirmed_data,
+                    self.treeview.recovered_data
+                ],
+                title="Recovered/Confirmed",
+                select="proportion-compare"
+            )
+        )
+        self.compare_proportion.add_command(
+            label="Recovered/Deaths",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.deaths_data,
+                    self.treeview.recovered_data
+                ],
+                title="Recovered/Deaths",
+                select="proportion-compare"
+            )
+        )
         
     @staticmethod
     def find_proportion(x=None, y=None):
@@ -144,7 +182,16 @@ class Menu:
         result = []
         for i in range(len(x)):
             try:
-                result.append(x[i] / y[i] * 100)
+                if isinstance(x[i], list):
+                    sub = []
+                    for j in range(len(x[i])):
+                        try:
+                            sub.append(x[i][j] / y[i][j] * 100)
+                        except ZeroDivisionError:
+                            sub.append(0)
+                    result.append(sub)
+                else:
+                    result.append(x[i] / y[i] * 100)
             except ZeroDivisionError:
                 result.append(0)
         return result
@@ -214,6 +261,29 @@ class Menu:
                     country=countries,
                     title=title
                 )
+            elif select == "proportion-compare":
+                data1, data2 = data[0], data[1]
+                values = [[], []]
+                values[0] = self.get_values(items=items, data=data1, compare=True)
+                values[1] = self.get_values(items=items, data=data2, compare=True)
+                if 2 <= len(values[0]) < 6:
+                    plot_data(
+                        x=self.treeview.times,
+                        y=self.find_proportion(
+                            x=values[1],
+                            y=values[0],
+                        ),
+                        country=countries,
+                        title=title,
+                        compare=True
+                    )
+                else:
+                    showinfo(
+                        title="Info",
+                        message="The number of selected country "
+                                "should be at least 2 "
+                                "and at most 5."
+                    )
             elif select == "increase_rate":
                 values = self.get_values(items=items, data=data)
                 toplevel = tk.Toplevel()
