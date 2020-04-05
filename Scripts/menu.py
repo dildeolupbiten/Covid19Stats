@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .modules import tk, array
+from .modules import tk, array, showinfo
 from .plot import plot_data
 from .treeview import Treeview
 from .create_spreadsheet import Spreadsheet
@@ -13,6 +13,7 @@ class Menu:
         self.view = tk.Menu(master=self.master, tearoff=False)
         self.proportion = tk.Menu(master=self.master, tearoff=False)
         self.increase_rate = tk.Menu(master=self.master, tearoff=False)
+        self.compare = tk.Menu(master=self.master, tearoff=False)
         self.master.add_cascade(
             label="View Case Graphs",
             menu=self.view
@@ -24,6 +25,10 @@ class Menu:
         self.master.add_cascade(
             label="View Increase Rate",
             menu=self.increase_rate
+        )
+        self.master.add_cascade(
+            label="Compare Case Graphs",
+            menu=self.compare
         )
         self.view.add_command(
             label="Confirmed",
@@ -106,6 +111,30 @@ class Menu:
                 select="increase_rate"
             )
         )
+        self.compare.add_command(
+            label="Confirmed",
+            command=lambda: self.view_data(
+                data=self.treeview.confirmed_data,
+                title="Confirmed",
+                select="view-compare"
+            )
+        )
+        self.compare.add_command(
+            label="Deaths",
+            command=lambda: self.view_data(
+                data=self.treeview.deaths_data,
+                title="Deaths",
+                select="view-compare"
+            )
+        )
+        self.compare.add_command(
+            label="Recovered",
+            command=lambda: self.view_data(
+                data=self.treeview.recovered_data,
+                title="Recovered",
+                select="view-compare"
+            )
+        )
         
     @staticmethod
     def find_proportion(x=None, y=None):
@@ -131,24 +160,29 @@ class Menu:
             )
 
     @staticmethod
-    def get_values(items: str = "", data=None):
+    def get_values(items: str = "", data=None, compare: bool = False):
         if not data:
             data = []
         values = []
-        selected = []
-        for item in items:
-            for i, j in enumerate(data[1:]):
-                if item == j[0] and item not in selected:
-                    selected.append(item)
-                    if isinstance(values, list):
-                        values = array(
-                            [int(k) for k in j[3:]]
-                        )
-                    else:
-                        values += array(
-                            [int(k) for k in j[3:]]
-                        )
-        return [int(i) for i in values]
+        if not compare:
+            for item in items:
+                for i, j in enumerate(data[1:]):
+                    if item == j[0]:
+                        if isinstance(values, list):
+                            values = array(
+                                [int(k) for k in j[3:]]
+                            )
+                        else:
+                            values += array(
+                                [int(k) for k in j[3:]]
+                            )
+            return [int(i) for i in values]
+        else:
+            for item in items:
+                for i, j in enumerate(data[1:]):
+                    if item == j[0]:
+                        values.append([int(k) for k in j[3:]])
+            return values
               
     def view_data(
             self, 
@@ -164,7 +198,7 @@ class Menu:
                 for i in self.treeview.selection()
             ]
             countries = ", ".join(items) \
-                if len(items) < 5 \
+                if len(items) < 6 \
                 else f"Selected Countries = {len(items)}"
             if select == "proportion":
                 data1, data2 = data[0], data[1]
@@ -243,5 +277,26 @@ class Menu:
                     x=self.treeview.times,
                     y=values,
                     country=countries,
-                    title=title
+                    title=title,
                 )
+            elif select == "view-compare":
+                values = self.get_values(
+                    items=items,
+                    data=data,
+                    compare=True
+                )
+                if 2 <= len(values) <= 10:
+                    plot_data(
+                        x=self.treeview.times,
+                        y=values,
+                        country=countries,
+                        title=title,
+                        compare=True
+                    )
+                else:
+                    showinfo(
+                        title="Info",
+                        message="The number of selected country "
+                                "should be at least 2 "
+                                "and at most 5."
+                    )
