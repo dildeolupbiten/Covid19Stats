@@ -14,7 +14,6 @@ class Frame(tk.Frame):
         self.treeview = Treeview(
             master=self, 
             columns=(
-                "Province/State",
                 "Country/Region",
                 "Latitude",
                 "Longitude"

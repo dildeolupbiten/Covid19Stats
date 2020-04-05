@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .modules import tk
+from .modules import tk, array
 from .plot import plot_data
 from .treeview import Treeview
 from .create_spreadsheet import Spreadsheet
@@ -128,7 +128,27 @@ class Menu:
                 case + (case * increase / 100), 
                 increase, 
                 day - 1
-            )             
+            )
+
+    @staticmethod
+    def get_values(items: str = "", data=None):
+        if not data:
+            data = []
+        values = []
+        selected = []
+        for item in items:
+            for i, j in enumerate(data[1:]):
+                if item == j[0] and item not in selected:
+                    selected.append(item)
+                    if isinstance(values, list):
+                        values = array(
+                            [int(k) for k in j[3:]]
+                        )
+                    else:
+                        values += array(
+                            [int(k) for k in j[3:]]
+                        )
+        return [int(i) for i in values]
               
     def view_data(
             self, 
@@ -139,89 +159,89 @@ class Menu:
         if not data:
             data = []
         if self.treeview.selection():
-            item = self.treeview.item(self.treeview.selection())["values"]
+            items = [
+                self.treeview.item(i)["values"][0]
+                for i in self.treeview.selection()
+            ]
+            countries = ", ".join(items) \
+                if len(items) < 5 \
+                else f"Selected Countries = {len(items)}"
             if select == "proportion":
                 data1, data2 = data[0], data[1]
-                values = [(), ()]
-                for i, j in enumerate(data1[1:]):
-                    if item[1] == j[1]:
-                        values[0] = [int(k) for k in j[4:]]
-                for i, j in enumerate(data2[1:]):
-                    if item[1] == j[1]:
-                        values[1] = [int(k) for k in j[4:]]
+                values = [[], []]
+                values[0] = self.get_values(items=items, data=data1)
+                values[1] = self.get_values(items=items, data=data2)
                 plot_data(
                     x=self.treeview.times, 
                     y=self.find_proportion(
-                        x=tuple(values[1]),
-                        y=tuple(values[0]),
+                        x=values[1],
+                        y=values[0],
                     ),
-                    country=item[1],
+                    country=countries,
                     title=title
                 )
             elif select == "increase_rate":
-                for i, j in enumerate(data[1:]):
-                    if item[1] == j[1]:
-                        values = [int(k) for k in j[4:]]
-                        toplevel = tk.Toplevel()
-                        toplevel.title(f"{item[1]} - {title}")
-                        toplevel.resizable(width=False, height=False)
-                        frame = tk.Frame(master=toplevel)
-                        frame.pack(side="top")
-                        columns = (
-                            "Date",
-                            title,
-                            "Increase Percent",
-                            "Mean Increase Percent",
-                            "Prediction of the next day"
-                        )
-                        treeview = Treeview(
-                            master=frame, 
-                            columns=columns,
-                            csv=False
-                        )
-                        mean = []
-                        all_data = []
-                        for ind, (i_, j_) in enumerate(
-                                zip(self.treeview.times, values)
-                        ):
-                            try:
-                                increase_rate = 100 \
-                                    * (values[ind] - values[ind - 1]) \
-                                    / values[ind - 1]
-                            except:
-                                increase_rate = 0
-                            if ind == 0:
-                                increase_rate = 0
-                            mean.append(increase_rate)
-                            row_data = [
-                                i_.strftime('%Y.%m.%d'),
-                                j_,
-                                f"{round(increase_rate, 2)} %",
-                                f"{round(sum(mean) / len(mean), 2)} %",
-                                self.predict(j_, increase_rate, 1)
-                            ]
-                            treeview.insert(
-                                parent="",
-                                index=ind,
-                                values=[k for k in row_data]
-                            )
-                            all_data.append(row_data)
-                        button = tk.Button(
-                            master=toplevel, 
-                            text="Export",
-                            command=lambda: Spreadsheet(
-                                filename=f"{item[1]}_{title}.xlsx", 
-                                columns=columns,
-                                data=all_data
-                            ) 
-                        )
-                        button.pack(side="bottom")
+                values = self.get_values(items=items, data=data)
+                toplevel = tk.Toplevel()
+                toplevel.title(f"{countries} - {title}")
+                toplevel.resizable(width=False, height=False)
+                frame = tk.Frame(master=toplevel)
+                frame.pack(side="top")
+                columns = (
+                    "Date",
+                    title,
+                    "Increase Percent",
+                    "Mean Increase Percent",
+                    "Prediction of the next day"
+                )
+                treeview = Treeview(
+                    master=frame,
+                    columns=columns,
+                    csv=False
+                )
+                mean = []
+                all_data = []
+                for ind, (i_, j_) in enumerate(
+                        zip(self.treeview.times, values)
+                ):
+                    try:
+                        increase_rate = 100 \
+                            * (values[ind] - values[ind - 1]) \
+                            / values[ind - 1]
+                    except:
+                        increase_rate = 0
+                    if ind == 0:
+                        increase_rate = 0
+                    mean.append(increase_rate)
+                    row_data = [
+                        i_.strftime('%Y.%m.%d'),
+                        j_,
+                        f"{round(increase_rate, 2)} %",
+                        f"{round(sum(mean) / len(mean), 2)} %",
+                        self.predict(j_, increase_rate, 1)
+                    ]
+                    treeview.insert(
+                        parent="",
+                        index=ind,
+                        values=[k for k in row_data]
+                    )
+                    all_data.append(row_data)
+                countries = countries.replace("=", "-")
+                button = tk.Button(
+                    master=toplevel,
+                    text="Export",
+                    command=lambda: Spreadsheet(
+                        filename=f'{countries}_{title}.xlsx',
+                        columns=columns,
+                        data=all_data
+                    )
+                )
+                button.pack(side="bottom")
             elif select == "view":
-                for i, j in enumerate(data[1:]):
-                    if item[1] == j[1]:
-                        plot_data(
-                            x=self.treeview.times, 
-                            y=tuple([int(k) for k in j[4:]]),
-                            country=item[1],
-                            title=title
-                        )
+                values = self.get_values(items=items, data=data)
+                plot_data(
+                    x=self.treeview.times,
+                    y=values,
+                    country=countries,
+                    title=title
+                )

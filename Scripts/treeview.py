@@ -49,15 +49,23 @@ class Treeview(Tv):
             self.recovered_data = read_csv_file(filename=self.recovered)
             self.times = tuple(
                 dt.strptime(i + "20", "%m/%d/%Y") 
-                for i in self.confirmed_data[0][4:]
+                for i in self.confirmed_data[0][3:]
             )
             self.columns = [i[:4] for i in self.confirmed_data[1:]]
             for i, j in enumerate(self.confirmed_data[1:]):
                 self.insert(
                     parent="",
                     index=i,
-                    values=[j if j else None for j in self.columns[i]]
+                    values=[j for j in self.columns[i]]
                 )
+            self.bind(
+                sequence="<Control-a>",
+                func=lambda event: self.select_all()
+            )
+            self.bind(
+                sequence="<Control-A>",
+                func=lambda event: self.select_all()
+            )
 
     def _heading(
             self,
@@ -99,3 +107,7 @@ class Treeview(Tv):
                 reverse=not reverse
             )
         )
+
+    def select_all(self):
+        for child in self.get_children():
+            self.selection_add(child)
