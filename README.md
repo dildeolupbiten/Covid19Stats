@@ -51,7 +51,7 @@ python Covid19Stats.py
 
 ![img5](https://user-images.githubusercontent.com/29302909/78509893-1fc69b80-779a-11ea-9852-effecb211e92.png)
 
-6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of them. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
+6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of values per day. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
 
 ![img6](https://user-images.githubusercontent.com/29302909/78509899-25bc7c80-779a-11ea-925a-5911f4e2dd4e.png)
 
