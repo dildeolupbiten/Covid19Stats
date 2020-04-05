@@ -60,7 +60,7 @@ python Covid19Stats.py
 7. Users can also use the other options for the selected planets.
 ![img8](https://user-images.githubusercontent.com/29302909/78509907-3240d500-779a-11ea-9ae1-5029f086ace6.png)
 
-8. Users can also select all countries and can use the all right click options except from the cascades that are related to comparing. As mentioned above, the comparing attribute is only valid for at least 2 and at most 5 selected countries. The names of the countries won't be written to the graph and treeview title, instead the number of the selected countries will be written as a title.
+8. Users can also select all countries and can use the all right click options except from the cascades that are related to comparing. As mentioned above, the comparing feature is only valid for at least 2 and at most 5 selected countries. The names of the countries won't be written to the graph and treeview title, instead the number of the selected countries will be written as a title.
 
 ![img9](https://user-images.githubusercontent.com/29302909/78509911-35d45c00-779a-11ea-8a65-60dbe1dbf23e.png)
 ![img10](https://user-images.githubusercontent.com/29302909/78509916-3a991000-779a-11ea-9d6d-d2e5f2d05440.png)
