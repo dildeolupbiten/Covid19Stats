@@ -31,6 +31,41 @@ python Covid19Stats.py
 
 ## Screenshots
 
-![img1](https://user-images.githubusercontent.com/29302909/77769439-e634b880-7054-11ea-8692-b986849cd010.png)
+1. Below is the main screen when the program opens.
 
-![img2](https://user-images.githubusercontent.com/29302909/77769449-eaf96c80-7054-11ea-9bf3-df845a0b54ee.png)
+![img1](https://user-images.githubusercontent.com/29302909/78509883-0d4c6200-779a-11ea-8004-57e986e51dd3.png)
+
+2. When users select a country and right click on treeview, a right click menu will be created. 
+
+![img2](https://user-images.githubusercontent.com/29302909/78509887-13dad980-779a-11ea-94f6-237864167b70.png)
+
+3. If users extend the **View Case Graphs** cascade, three options which are named as **Confirmed**, **Deaths** and **Recovered** will be created. And if one of these options is selected, the graph of the selected option will be displayed.
+
+![img3](https://user-images.githubusercontent.com/29302909/78509888-19d0ba80-779a-11ea-8d75-edcdafa036d1.png)
+
+4. If users extend the **View Proportion Graphs** cascade, three options which are named as **Deaths/Confirmed**, **Recovered/Confirmed** and **Recovered/Deaths** will be created. And if one of these options is selected, the graph of the selected option will be displayed.
+
+![img4](https://user-images.githubusercontent.com/29302909/78509889-1ccbab00-779a-11ea-8b97-7843259880ff.png)
+
+5. If users extend the **View Increase Rate** cascade, three options which are named as **Confirmed**, **Deaths** and **Recovered** will be created. And if one of these options is selected, a treeview of the selected option will be displayed.
+
+![img5](https://user-images.githubusercontent.com/29302909/78509893-1fc69b80-779a-11ea-9852-effecb211e92.png)
+
+6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of them. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
+
+![img6](https://user-images.githubusercontent.com/29302909/78509899-25bc7c80-779a-11ea-925a-5911f4e2dd4e.png)
+
+![img7](https://user-images.githubusercontent.com/29302909/78509904-2ead4e00-779a-11ea-834a-5d7e0ce99958.png)
+
+7. Users can also use the other options for the selected planets.
+![img8](https://user-images.githubusercontent.com/29302909/78509907-3240d500-779a-11ea-9ae1-5029f086ace6.png)
+
+8. Users can also select all countries and can use the all right click options except from the cascades that are related to comparing. As mentioned above, the comparing attribute is only valid for at least 2 and at most 5 selected countries. The names of the countries won't be written to the graph and treeview title, instead the number of the selected countries will be written as a title.
+
+![img9](https://user-images.githubusercontent.com/29302909/78509911-35d45c00-779a-11ea-8a65-60dbe1dbf23e.png)
+![img10](https://user-images.githubusercontent.com/29302909/78509916-3a991000-779a-11ea-9d6d-d2e5f2d05440.png)
+![img11](https://user-images.githubusercontent.com/29302909/78509919-44227800-779a-11ea-95b8-fac42b7087e4.png)
+![img12](https://user-images.githubusercontent.com/29302909/78509920-47b5ff00-779a-11ea-9234-1909aeca9566.png)
+![img13](https://user-images.githubusercontent.com/29302909/78509923-4b498600-779a-11ea-9f9e-4b437fa97a98.png)
+
+
