@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .modules import ssl, urlopen, exists, listdir
+from .modules import ssl, urlopen
 from .constants import (
     CONFIRMED, DEATHS, RECOVERED, 
     URL_CONFIRMED, URL_DEATHS, URL_RECOVERED
@@ -22,7 +22,7 @@ def get_data(url: str = ""):
     except:
         return
 
-def write_content(name: str = "", filename: str = "", url: str = ""):
+def write_content(filename: str = "", url: str = ""):
     data = get_data(url=url)
     if not data:
         copy_files(source="Latest_Files", target=".", filename=filename)
@@ -36,6 +36,6 @@ def write_content(name: str = "", filename: str = "", url: str = ""):
 
 
 def download():   
-    write_content(name="confirmed", filename=CONFIRMED, url=URL_CONFIRMED)
-    write_content(name="deaths", filename=DEATHS, url=URL_DEATHS)
-    write_content(name="recovered", filename=RECOVERED, url=URL_RECOVERED)
+    write_content(filename=CONFIRMED, url=URL_CONFIRMED)
+    write_content(filename=DEATHS, url=URL_DEATHS)
+    write_content(filename=RECOVERED, url=URL_RECOVERED)
