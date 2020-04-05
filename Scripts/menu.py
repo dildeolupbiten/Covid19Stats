@@ -250,8 +250,14 @@ class Menu:
             if select == "proportion":
                 data1, data2 = data[0], data[1]
                 values = [[], []]
-                values[0] = self.get_values(items=items, data=data1)
-                values[1] = self.get_values(items=items, data=data2)
+                values[0] = self.get_values(
+                    items=items,
+                    data=data1
+                )
+                values[1] = self.get_values(
+                    items=items,
+                    data=data2
+                )
                 plot_data(
                     x=self.treeview.times, 
                     y=self.find_proportion(
@@ -264,8 +270,16 @@ class Menu:
             elif select == "proportion-compare":
                 data1, data2 = data[0], data[1]
                 values = [[], []]
-                values[0] = self.get_values(items=items, data=data1, compare=True)
-                values[1] = self.get_values(items=items, data=data2, compare=True)
+                values[0] = self.get_values(
+                    items=items,
+                    data=data1,
+                    compare=True
+                )
+                values[1] = self.get_values(
+                    items=items,
+                    data=data2,
+                    compare=True
+                )
                 if 2 <= len(values[0]) < 6:
                     plot_data(
                         x=self.treeview.times,
