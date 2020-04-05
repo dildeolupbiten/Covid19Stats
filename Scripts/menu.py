@@ -285,7 +285,7 @@ class Menu:
                     data=data,
                     compare=True
                 )
-                if 2 <= len(values) <= 10:
+                if 2 <= len(values) < 6:
                     plot_data(
                         x=self.treeview.times,
                         y=values,
