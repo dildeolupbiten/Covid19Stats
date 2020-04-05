@@ -60,3 +60,4 @@ class Spreadsheet(Workbook):
                     self.format(align="center")
                 )
                 n += 3
+
