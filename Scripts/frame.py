@@ -13,11 +13,7 @@ class Frame(tk.Frame):
         self.menu = None
         self.treeview = Treeview(
             master=self, 
-            columns=(
-                "Country/Region",
-                "Latitude",
-                "Longitude"
-            ),
+            columns=("Country",),
             csv=True
         )
         self.entry = Entry(master=self.master, treeview=self.treeview)
