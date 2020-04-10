@@ -17,7 +17,8 @@ class Spreadsheet(Workbook):
             "D", "E", "F", 
             "G", "H", "I", 
             "J", "K", "L",
-            "M", "N", "O"
+            "M", "N", "O",
+            "P", "Q", "R"
         ]
         self.columns = columns
         self.data = data

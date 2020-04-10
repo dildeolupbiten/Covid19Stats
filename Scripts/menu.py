@@ -205,6 +205,9 @@ class Menu:
                 increase, 
                 day - 1
             )
+            
+    def deviation_percent(self, observed, expected):
+        return f"{round((expected - observed) * 100 / expected, 2)} %"
 
     @staticmethod
     def get_values(items: str = "", data=None, compare: bool = False):
@@ -310,7 +313,8 @@ class Menu:
                     title,
                     "Increase Percent",
                     "Mean Increase Percent",
-                    "Prediction of the next day"
+                    "Prediction of the next day",
+                    "Deviation Percent"
                 )
                 treeview = Treeview(
                     master=frame,
@@ -330,13 +334,24 @@ class Menu:
                         increase_rate = 0
                     if ind == 0:
                         increase_rate = 0
+                    if ind == 0:
+                        deviation = "0 %"
+                    else:
+                        try:
+                            deviation = self.deviation_percent(
+                                values[ind], 
+                                self.predict(values[ind - 1], mean[-1], 1)
+                            )
+                        except:
+                            deviation = "0 %"
                     mean.append(increase_rate)
                     row_data = [
                         i_.strftime('%Y.%m.%d'),
                         j_,
                         f"{round(increase_rate, 2)} %",
                         f"{round(sum(mean) / len(mean), 2)} %",
-                        self.predict(j_, increase_rate, 1)
+                        self.predict(j_, increase_rate, 1),
+                        deviation
                     ]
                     treeview.insert(
                         parent="",
