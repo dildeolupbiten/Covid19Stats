@@ -37,7 +37,7 @@ python Covid19Stats.py
 
 2. When users select a country and right click on treeview, a right click menu will be created. 
 
-![img2](https://user-images.githubusercontent.com/29302909/78509887-13dad980-779a-11ea-94f6-237864167b70.png)
+![img2](https://user-images.githubusercontent.com/29302909/79031421-2e9cbc00-7ba7-11ea-806f-ef3500110653.png)
 
 3. If users extend the **View Case Graphs** cascade, three options which are named as **Confirmed**, **Deaths** and **Recovered** will be created. And if one of these options is selected, the graph of the selected option will be displayed.
 
@@ -53,7 +53,7 @@ python Covid19Stats.py
 
 6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of values per day. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
 
-![img6](https://user-images.githubusercontent.com/29302909/79031215-ea5cec00-7ba5-11ea-8f89-9b9d49037b40.png)
+![img6](https://user-images.githubusercontent.com/29302909/79031419-2ba1cb80-7ba7-11ea-9ab4-8e0d0c522f56.png)
 
 ![img7](https://user-images.githubusercontent.com/29302909/78509904-2ead4e00-779a-11ea-834a-5d7e0ce99958.png)
 
