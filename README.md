@@ -53,17 +53,22 @@ python Covid19Stats.py
 
 6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of values per day. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
 
-![img6](https://user-images.githubusercontent.com/29302909/79031213-e7fa9200-7ba5-11ea-9690-b72867c3103e.png)
+![img6](https://user-images.githubusercontent.com/29302909/79031215-ea5cec00-7ba5-11ea-8f89-9b9d49037b40.png)
 
 ![img7](https://user-images.githubusercontent.com/29302909/78509904-2ead4e00-779a-11ea-834a-5d7e0ce99958.png)
 
 7. Users can also use the other options for the selected planets.
+
 ![img8](https://user-images.githubusercontent.com/29302909/78509907-3240d500-779a-11ea-9ae1-5029f086ace6.png)
 
 8. Users can also select all countries and can use the all right click options except from the cascades that are related to comparing. As mentioned above, the comparing feature is only valid for at least 2 and at most 5 selected countries. The names of the countries won't be written to the graph and treeview title, instead the number of the selected countries will be written as a title.
 
-![img9](https://user-images.githubusercontent.com/29302909/79031215-ea5cec00-7ba5-11ea-8f89-9b9d49037b40.png)
+![img9](https://user-images.githubusercontent.com/29302909/79031213-e7fa9200-7ba5-11ea-9690-b72867c3103e.png)
+
 ![img10](https://user-images.githubusercontent.com/29302909/78509916-3a991000-779a-11ea-9d6d-d2e5f2d05440.png)
+
 ![img11](https://user-images.githubusercontent.com/29302909/78509919-44227800-779a-11ea-95b8-fac42b7087e4.png)
+
 ![img12](https://user-images.githubusercontent.com/29302909/78509920-47b5ff00-779a-11ea-9234-1909aeca9566.png)
+
 ![img13](https://user-images.githubusercontent.com/29302909/78509923-4b498600-779a-11ea-9f9e-4b437fa97a98.png)
