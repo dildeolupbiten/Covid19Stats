@@ -47,7 +47,7 @@ python Covid19Stats.py
 
 ![img4](https://user-images.githubusercontent.com/29302909/78509889-1ccbab00-779a-11ea-8b97-7843259880ff.png)
 
-5. If users extend the **View Increase Rate** cascade, three options which are named as **Confirmed**, **Deaths** and **Recovered** will be created. And if one of these options is selected, a treeview of the selected option will be displayed.
+5. If users extend the **View Increase Rate** cascade, first they will see two cascades that are named as **Case Rates** and **Proportion Rates**. The **Case Rates** cascade contains three options which are named as **Confirmed**, **Deaths** and **Recovered**. The **Proportion Rates** cascade contains three options either which are names **Death/Confirmed**, **Recovered/Confirmed** and **Recovered/Deaths**. And if one of these options is selected, a treeview of the selected option will be displayed.
 
 ![img5](https://user-images.githubusercontent.com/29302909/78509893-1fc69b80-779a-11ea-9852-effecb211e92.png)
 
