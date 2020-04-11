@@ -65,8 +65,6 @@ python Covid19Stats.py
 
 ![img9](https://user-images.githubusercontent.com/29302909/79031213-e7fa9200-7ba5-11ea-9690-b72867c3103e.png)
 
-![img10](https://user-images.githubusercontent.com/29302909/78509916-3a991000-779a-11ea-9d6d-d2e5f2d05440.png)
-
 ![img11](https://user-images.githubusercontent.com/29302909/78509919-44227800-779a-11ea-95b8-fac42b7087e4.png)
 
 ![img12](https://user-images.githubusercontent.com/29302909/78509920-47b5ff00-779a-11ea-9234-1909aeca9566.png)
