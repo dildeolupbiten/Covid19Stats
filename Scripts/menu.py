@@ -363,14 +363,15 @@ class Menu:
                 except:
                     deviation = "0 %"
             mean.append(increase_rate)
-            if proportion:
-                j_ = round(j_, 2)
             prediction = self.predict(
                 case=j_,
                 day=1,
                 increase=increase_rate,
                 proportion=proportion
             )
+            if proportion:
+                j_ = f"{round(j_, 2)} %"
+                prediction = f"{prediction} %"
             row_data = [
                 i_.strftime('%Y.%m.%d'),
                 j_,
