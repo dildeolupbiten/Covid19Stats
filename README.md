@@ -10,7 +10,7 @@ The program runs on Windows, Linux and Mac operating systems.
 
 In order to run **Covid19Stats**, at least [Python](https://www.python.org/)'s 3.6 version must be installed on your computer. Note that in order to use [Python](https://www.python.org/) on the command prompt, [Python](https://www.python.org/) should be added to the PATH.
 
-There are several libraries that the program requires. In order to install these requirements users should type the below command on console window.
+There are several libraries that the program requires. In order to install these requirements users should type the below command to the console window.
 
 ```
 pip3 install -r requirements.txt
