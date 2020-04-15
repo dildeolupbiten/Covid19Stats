@@ -1,6 +1,6 @@
 # Covid19Stats
 
-**Covid19Stats** is a Python program that works with the csv files that are provided by [data.humdata](https://data.humdata.org). The csv files can be downloaded from [Covid-19 Cases Data](https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases).
+**Covid19Stats** is a Python program that works with the csv files that are provided by [data.humdata](https://data.humdata.org). The csv files can be downloaded from [Covid-19 Cases Data](https://github.com/CSSEGISandData/COVID-19).
 
 ## Availability
  
