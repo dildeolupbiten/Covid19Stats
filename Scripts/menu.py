@@ -495,8 +495,9 @@ class Menu:
                     compare=True
                 )
                 if daily_or_total == "Daily":
-                    value1 = self.daily_or_total(arr=value1)
-                    value2 = self.daily_or_total(arr=value2)
+                    for i in range(len(value1)):
+                        value1[i] = self.daily_or_total(arr=value1[i])
+                        value2[i] = self.daily_or_total(arr=value2[i])
                 if 2 <= len(value1) < 6:
                     plot_data(
                         x=self.treeview.times,
@@ -574,7 +575,8 @@ class Menu:
                     compare=True
                 )
                 if daily_or_total == "Daily":
-                    values = self.daily_or_total(arr=values)
+                    for i in range(len(values)):
+                        values[i] = self.daily_or_total(arr=values[i])
                 if 2 <= len(values) < 6:
                     plot_data(
                         x=self.treeview.times,

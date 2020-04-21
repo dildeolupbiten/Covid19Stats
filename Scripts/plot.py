@@ -30,7 +30,7 @@ def plot_data(
             y=y[i],
             fmt="-",
             color=colors[i],
-            label=countries[i],
+            label=countries[i].split("(")[0],
             linewidth=0.7
         )
         if not compare:
