@@ -18,6 +18,8 @@ pip3 install -r requirements.txt
 
 ## Usage
 
+**1.** Run the Covid19Stats.py file using Python.
+
 **For Linux and Mac**
 
 ```
@@ -29,44 +31,56 @@ python3 Covid19Stats.py
 python Covid19Stats.py
 ```
 
-## Screenshots
-
-1. Below is the main screen when the program opens.
+**2.** Short time later a window like below should occur.
 
 ![img1](https://user-images.githubusercontent.com/29302909/79031212-e5983800-7ba5-11ea-8076-f92407430f6c.png)
 
-2. When users select a country and right click on treeview, a right click menu will be created. 
+**3.** When users select at least one country and press the right click of the mouse, a menu like below should occur.
 
-![img2](https://user-images.githubusercontent.com/29302909/79031421-2e9cbc00-7ba7-11ea-806f-ef3500110653.png)
+![img2](https://user-images.githubusercontent.com/29302909/79899779-e9ce1c00-8415-11ea-9f96-f82ad1e15051.png)
 
-3. If users extend the **View Case Graphs** cascade, three options which are named as **Confirmed**, **Deaths** and **Recovered** will be created. And if one of these options is selected, the graph of the selected option will be displayed.
+**4.** The **Total** and **Daily** cascades contain the same options. The options in the **Total** cascade are for the cummulative numbers while the options in the **Daily** cascade while are for daily numbers.
 
-![img3](https://user-images.githubusercontent.com/29302909/78509888-19d0ba80-779a-11ea-8d75-edcdafa036d1.png)
+## Screenshots
 
-4. If users extend the **View Proportion Graphs** cascade, three options which are named as **Deaths/Confirmed**, **Recovered/Confirmed** and **Recovered/Deaths** will be created. And if one of these options is selected, the graph of the selected option will be displayed.
+![img3](https://user-images.githubusercontent.com/29302909/79904262-1afe1a80-841d-11ea-9f22-a03e2bd044e3.png)
+![img4](https://user-images.githubusercontent.com/29302909/79904270-1d607480-841d-11ea-8363-2f09d7a417cc.png)
 
-![img4](https://user-images.githubusercontent.com/29302909/78509889-1ccbab00-779a-11ea-8b97-7843259880ff.png)
+![img5](https://user-images.githubusercontent.com/29302909/79904271-1df90b00-841d-11ea-8ad5-81cfac5c1059.png)
+![img6](https://user-images.githubusercontent.com/29302909/79904273-1df90b00-841d-11ea-9e84-705758588a87.png)
 
-5. If users extend the **View Increase Rate** cascade, first they will see two cascades that are named as **Case Rates** and **Proportion Rates**. The **Case Rates** cascade contains three options which are named as **Confirmed**, **Deaths** and **Recovered**. The **Proportion Rates** cascade contains three options either which are named as **Death/Confirmed**, **Recovered/Confirmed** and **Recovered/Deaths**. And if one of these options is selected, a treeview of the selected option will be displayed.
+![img7](https://user-images.githubusercontent.com/29302909/79904274-1e91a180-841d-11ea-9ee7-eebe86277d5c.png)
+![img8](https://user-images.githubusercontent.com/29302909/79904276-1f2a3800-841d-11ea-9eaf-da74f7b523c7.png)
 
-![img5](https://user-images.githubusercontent.com/29302909/78509893-1fc69b80-779a-11ea-9852-effecb211e92.png)
+![img9](https://user-images.githubusercontent.com/29302909/79904277-1f2a3800-841d-11ea-818d-b6afa68574b5.png)
+![img10](https://user-images.githubusercontent.com/29302909/79904281-1fc2ce80-841d-11ea-9e78-e00e0b8b1f14.png)
 
-6. Users can also select multiple countries and can look at the case and proportion graphs and also the increase rate of values per day. In this case, the values per day of the selected countries will be summed and will be used as a single data. However if users select at least 2 and at most 5 countries, they can use **Compare Case Graphs** and **Compare Proportion Graphs** cascades. These cascades have the same options that the **View Case Graphs** and **View Proportion Graphs** have. The difference is that the values of the selected countries will be inserted to the graphs one by one. And these graphs look a bit different than the other graphs.
+![img11](https://user-images.githubusercontent.com/29302909/79904284-205b6500-841d-11ea-9e43-40ffcd9bbc03.png)
+![img12](https://user-images.githubusercontent.com/29302909/79904286-20f3fb80-841d-11ea-8462-f618ad5a2471.png)
 
-![img6](https://user-images.githubusercontent.com/29302909/79031419-2ba1cb80-7ba7-11ea-9ab4-8e0d0c522f56.png)
+![img13](https://user-images.githubusercontent.com/29302909/79904287-218c9200-841d-11ea-930e-2c4fd9894179.png)
+![img14](https://user-images.githubusercontent.com/29302909/79904289-22bdbf00-841d-11ea-9f01-b03c5333e26b.png)
 
-![img7](https://user-images.githubusercontent.com/29302909/78509904-2ead4e00-779a-11ea-834a-5d7e0ce99958.png)
+![img15](https://user-images.githubusercontent.com/29302909/79904302-24878280-841d-11ea-8605-127beb33f145.png)
+![img16](https://user-images.githubusercontent.com/29302909/79904303-25201900-841d-11ea-95ef-2747517007f1.png)
 
-7. Users can also use the other options for the selected planets.
+![img17](https://user-images.githubusercontent.com/29302909/79904304-25b8af80-841d-11ea-93fa-b99a9999c778.png)
+![img18](https://user-images.githubusercontent.com/29302909/79904307-26e9dc80-841d-11ea-85bf-fa970f1c4af8.png)
 
-![img8](https://user-images.githubusercontent.com/29302909/78509907-3240d500-779a-11ea-9ae1-5029f086ace6.png)
+![img19](https://user-images.githubusercontent.com/29302909/79904309-26e9dc80-841d-11ea-8232-48119f874d06.png)
+![img20](https://user-images.githubusercontent.com/29302909/79904311-281b0980-841d-11ea-864c-37214e08da04.png)
 
-8. Users can also select all countries and can use the all right click options except from the cascades that are related to comparing. As mentioned above, the comparing feature is only valid for at least 2 and at most 5 selected countries. The names of the countries won't be written to the graph and treeview title, instead the number of the selected countries will be written as a title.
+![img21](https://user-images.githubusercontent.com/29302909/79904313-28b3a000-841d-11ea-9911-fcadc6a817f8.png)
+![img22](https://user-images.githubusercontent.com/29302909/79904316-294c3680-841d-11ea-8d2b-2472ab7a81c1.png)
 
-![img9](https://user-images.githubusercontent.com/29302909/79031213-e7fa9200-7ba5-11ea-9690-b72867c3103e.png)
+![img23](https://user-images.githubusercontent.com/29302909/79904320-2a7d6380-841d-11ea-8743-553f230fcb4c.png)
+![img24](https://user-images.githubusercontent.com/29302909/79904323-2b15fa00-841d-11ea-8861-565058fa4eb4.png)
 
-![img11](https://user-images.githubusercontent.com/29302909/78509919-44227800-779a-11ea-95b8-fac42b7087e4.png)
+![img25](https://user-images.githubusercontent.com/29302909/79904330-2cdfbd80-841d-11ea-9dbc-7c5eb775a52f.png)
+![img26](https://user-images.githubusercontent.com/29302909/79904333-2cdfbd80-841d-11ea-8e20-f4dd89264c32.png)
 
-![img12](https://user-images.githubusercontent.com/29302909/78509920-47b5ff00-779a-11ea-9234-1909aeca9566.png)
+![img27](https://user-images.githubusercontent.com/29302909/79904338-2e10ea80-841d-11ea-8a69-82b5d4e65e70.png)
+![img28](https://user-images.githubusercontent.com/29302909/79904339-2ea98100-841d-11ea-9599-992b013fce33.png)
 
-![img13](https://user-images.githubusercontent.com/29302909/78509923-4b498600-779a-11ea-9f9e-4b437fa97a98.png)
+![img29](https://user-images.githubusercontent.com/29302909/79904343-2ea98100-841d-11ea-81fa-bba0d468837d.png)
+![img30](https://user-images.githubusercontent.com/29302909/79904346-2fdaae00-841d-11ea-99e4-66f1628ac5d0.png)
