@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .modules import tk, array, showinfo
 from .plot import plot_data
 from .treeview import Treeview
+from .modules import tk, array, showinfo
 from .create_spreadsheet import Spreadsheet
 
 
@@ -10,129 +10,85 @@ class Menu:
     def __init__(self, master, treeview):
         self.master = master
         self.treeview = treeview
-        self.view = tk.Menu(master=self.master, tearoff=False)
-        self.proportion = tk.Menu(master=self.master, tearoff=False)
-        self.increase_rate = tk.Menu(master=self.master, tearoff=False)
-        self.increase_rate_cases = tk.Menu(
-            master=self.master,
+        self.total = tk.Menu(master=self.master, tearoff=False)
+        self.daily = tk.Menu(master=self.master, tearoff=False)
+        for k, v in {self.total: "Total", self.daily: "Daily"}.items():
+            self.master.add_cascade(
+                label=v,
+                menu=k
+            )
+            self.create_menus(k=k, v=v)
+
+    def create_menus(self, k: tk.Menu = None, v: str = ""):
+        view = tk.Menu(master=k, tearoff=False)
+        proportion = tk.Menu(master=k, tearoff=False)
+        increase_rate = tk.Menu(master=k, tearoff=False)
+        increase_rate_cases = tk.Menu(
+            master=k,
             tearoff=False
         )
-        self.increase_rate_proportions = tk.Menu(
-            master=self.master,
+        increase_rate_proportions = tk.Menu(
+            master=k,
             tearoff=False
         )
-        self.compare = tk.Menu(master=self.master, tearoff=False)
-        self.compare_proportion = tk.Menu(master=self.master, tearoff=False)
-        self.master.add_cascade(
+        compare = tk.Menu(master=k, tearoff=False)
+        compare_proportion = tk.Menu(master=k, tearoff=False)
+        k.add_cascade(
             label="View Case Graphs",
-            menu=self.view
+            menu=view
         )
-        self.master.add_cascade(
+        k.add_cascade(
             label="View Proportion Graphs",
-            menu=self.proportion
+            menu=proportion
         )
-        self.master.add_cascade(
+        k.add_cascade(
             label="View Increase Rate",
-            menu=self.increase_rate
+            menu=increase_rate
         )
-        self.master.add_cascade(
+        k.add_cascade(
             label="Compare Case Graphs",
-            menu=self.compare
+            menu=compare
         )
-        self.master.add_cascade(
+        k.add_cascade(
             label="Compare Proportion Graphs",
-            menu=self.compare_proportion
+            menu=compare_proportion
         )
-        self.increase_rate.add_cascade(
+        increase_rate.add_cascade(
             label="Case Rates",
-            menu=self.increase_rate_cases
+            menu=increase_rate_cases
         )
-        self.increase_rate.add_cascade(
+        increase_rate.add_cascade(
             label="Proportion Rates",
-            menu=self.increase_rate_proportions
+            menu=increase_rate_proportions
         )
-        self.view.add_command(
+        view.add_command(
             label="Confirmed",
             command=lambda: self.view_data(
                 data=self.treeview.confirmed_data,
                 title="Confirmed",
-                select="view"
+                select="view",
+                daily_or_total=v
             )
         )
-        self.view.add_command(
+        view.add_command(
             label="Deaths",
             command=lambda: self.view_data(
                 data=self.treeview.deaths_data,
                 title="Deaths",
-                select="view"
+                select="view",
+                daily_or_total=v
             )
         )
-        self.view.add_command(
+        view.add_command(
             label="Recovered",
             command=lambda: self.view_data(
                 data=self.treeview.recovered_data,
                 title="Recovered",
-                select="view"
+                select="view",
+                daily_or_total=v
             )
         )
-        self.proportion.add_command(
-            label="Deaths/Confirmed",
-            command=lambda: self.view_data(
-                data=[
-                    self.treeview.confirmed_data, 
-                    self.treeview.deaths_data
-                ],
-                title="Deaths/Confirmed",
-                select="proportion"
-            )
-        )
-        self.proportion.add_command(
-            label="Recovered/Confirmed",
-            command=lambda: self.view_data(
-                data=[
-                    self.treeview.confirmed_data, 
-                    self.treeview.recovered_data
-                ],
-                title="Recovered/Confirmed",
-                select="proportion"
-            )
-        )
-        self.proportion.add_command(
-            label="Recovered/Deaths",
-            command=lambda: self.view_data(
-                data=[
-                    self.treeview.deaths_data, 
-                    self.treeview.recovered_data
-                ],
-                title="Recovered/Deaths",
-                select="proportion"
-            )
-        )
-        self.increase_rate_cases.add_command(
-            label="Confirmed",
-            command=lambda: self.view_data(
-                data=self.treeview.confirmed_data,
-                title="Confirmed",
-                select="increase_rate"
-            )
-        )
-        self.increase_rate_cases.add_command(
-            label="Deaths",
-            command=lambda: self.view_data(
-                data=self.treeview.deaths_data,
-                title="Deaths",
-                select="increase_rate"
-            )
-        )
-        self.increase_rate_cases.add_command(
-            label="Recovered",
-            command=lambda: self.view_data(
-                data=self.treeview.recovered_data,
-                title="Recovered",
-                select="increase_rate"
-            )
-        )
-        self.increase_rate_proportions.add_command(
+        proportion.add_command(
             label="Deaths/Confirmed",
             command=lambda: self.view_data(
                 data=[
@@ -140,10 +96,11 @@ class Menu:
                     self.treeview.deaths_data
                 ],
                 title="Deaths/Confirmed",
-                select="increase_rate_proportion"
+                select="proportion",
+                daily_or_total=v
             )
         )
-        self.increase_rate_proportions.add_command(
+        proportion.add_command(
             label="Recovered/Confirmed",
             command=lambda: self.view_data(
                 data=[
@@ -151,10 +108,11 @@ class Menu:
                     self.treeview.recovered_data
                 ],
                 title="Recovered/Confirmed",
-                select="increase_rate_proportion"
+                select="proportion",
+                daily_or_total=v
             )
         )
-        self.increase_rate_proportions.add_command(
+        proportion.add_command(
             label="Recovered/Deaths",
             command=lambda: self.view_data(
                 data=[
@@ -162,34 +120,38 @@ class Menu:
                     self.treeview.recovered_data
                 ],
                 title="Recovered/Deaths",
-                select="increase_rate_proportion"
+                select="proportion",
+                daily_or_total=v
             )
         )
-        self.compare.add_command(
+        increase_rate_cases.add_command(
             label="Confirmed",
             command=lambda: self.view_data(
                 data=self.treeview.confirmed_data,
                 title="Confirmed",
-                select="view-compare"
+                select="increase_rate",
+                daily_or_total=v
             )
         )
-        self.compare.add_command(
+        increase_rate_cases.add_command(
             label="Deaths",
             command=lambda: self.view_data(
                 data=self.treeview.deaths_data,
                 title="Deaths",
-                select="view-compare"
+                select="increase_rate",
+                daily_or_total=v
             )
         )
-        self.compare.add_command(
+        increase_rate_cases.add_command(
             label="Recovered",
             command=lambda: self.view_data(
                 data=self.treeview.recovered_data,
                 title="Recovered",
-                select="view-compare"
+                select="increase_rate",
+                daily_or_total=v
             )
         )
-        self.compare_proportion.add_command(
+        increase_rate_proportions.add_command(
             label="Deaths/Confirmed",
             command=lambda: self.view_data(
                 data=[
@@ -197,10 +159,11 @@ class Menu:
                     self.treeview.deaths_data
                 ],
                 title="Deaths/Confirmed",
-                select="proportion-compare"
+                select="increase_rate_proportion",
+                daily_or_total=v
             )
         )
-        self.compare_proportion.add_command(
+        increase_rate_proportions.add_command(
             label="Recovered/Confirmed",
             command=lambda: self.view_data(
                 data=[
@@ -208,10 +171,11 @@ class Menu:
                     self.treeview.recovered_data
                 ],
                 title="Recovered/Confirmed",
-                select="proportion-compare"
+                select="increase_rate_proportion",
+                daily_or_total=v
             )
         )
-        self.compare_proportion.add_command(
+        increase_rate_proportions.add_command(
             label="Recovered/Deaths",
             command=lambda: self.view_data(
                 data=[
@@ -219,10 +183,74 @@ class Menu:
                     self.treeview.recovered_data
                 ],
                 title="Recovered/Deaths",
-                select="proportion-compare"
+                select="increase_rate_proportion",
+                daily_or_total=v
             )
         )
-        
+        compare.add_command(
+            label="Confirmed",
+            command=lambda: self.view_data(
+                data=self.treeview.confirmed_data,
+                title="Confirmed",
+                select="view-compare",
+                daily_or_total=v
+            )
+        )
+        compare.add_command(
+            label="Deaths",
+            command=lambda: self.view_data(
+                data=self.treeview.deaths_data,
+                title="Deaths",
+                select="view-compare",
+                daily_or_total=v
+            )
+        )
+        compare.add_command(
+            label="Recovered",
+            command=lambda: self.view_data(
+                data=self.treeview.recovered_data,
+                title="Recovered",
+                select="view-compare",
+                daily_or_total=v
+            )
+        )
+        compare_proportion.add_command(
+            label="Deaths/Confirmed",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.confirmed_data,
+                    self.treeview.deaths_data
+                ],
+                title="Deaths/Confirmed",
+                select="proportion-compare",
+                daily_or_total=v
+            )
+        )
+        compare_proportion.add_command(
+            label="Recovered/Confirmed",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.confirmed_data,
+                    self.treeview.recovered_data
+                ],
+                title="Recovered/Confirmed",
+                select="proportion-compare",
+                daily_or_total=v
+            )
+        )
+        compare_proportion.add_command(
+            label="Recovered/Deaths",
+            command=lambda: self.view_data(
+                data=[
+                    self.treeview.deaths_data,
+                    self.treeview.recovered_data
+                ],
+                title="Recovered/Deaths",
+                select="proportion-compare",
+                daily_or_total=v
+            )
+        )
+
     @staticmethod
     def find_proportion(x: list = [], y: list = []):
         if not all([x, y]):
@@ -310,9 +338,21 @@ class Menu:
             compare=compare
         )
 
+    @staticmethod
+    def daily_or_total(arr: list = []):
+        result = []
+        for i in range(len(arr)):
+            if i != 0:
+                result.append(arr[i] - arr[i - 1])
+            else:
+                result.append(arr[i])
+        return result
+
     def create_toplevel(
-            self, title: str = "",
+            self,
+            title: str = "",
             countries: str = "",
+            daily_or_total: str = "",
             values: list = [],
             proportion: bool = False
     ):
@@ -321,14 +361,22 @@ class Menu:
         toplevel.resizable(width=False, height=False)
         frame = tk.Frame(master=toplevel)
         frame.pack(side="top")
-        columns = (
-            "Date",
-            title,
-            "Increase Percent",
-            "Mean Increase Percent",
-            "Prediction of the next day",
-            "Deviation Percent"
-        )
+        if daily_or_total == "Total":
+            columns = (
+                "Date",
+                title,
+                "Increase Percent",
+                "Mean Increase Percent",
+                "Prediction of the next day",
+                "Deviation Percent"
+            )
+        else:
+            columns = (
+                "Date",
+                title,
+                "Increase Percent",
+                "Mean Increase Percent",
+            )
         treeview = Treeview(
             master=frame,
             columns=columns,
@@ -372,14 +420,22 @@ class Menu:
             if proportion:
                 j_ = f"{round(j_, 2)} %"
                 prediction = f"{prediction} %"
-            row_data = [
-                i_.strftime('%Y.%m.%d'),
-                j_,
-                f"{round(increase_rate, 2)} %",
-                f"{round(sum(mean) / len(mean), 2)} %",
-                prediction,
-                deviation
-            ]
+            if daily_or_total == "Total":
+                row_data = [
+                    i_.strftime('%Y.%m.%d'),
+                    j_,
+                    f"{round(increase_rate, 2)} %",
+                    f"{round(sum(mean) / len(mean), 2)} %",
+                    prediction,
+                    deviation
+                ]
+            else:
+                row_data = [
+                    i_.strftime('%Y.%m.%d'),
+                    j_,
+                    f"{round(increase_rate, 2)} %",
+                    f"{round(sum(mean) / len(mean), 2)} %",
+                ]
             treeview.insert(
                 parent="",
                 index=ind,
@@ -402,7 +458,8 @@ class Menu:
             self, 
             data=None, 
             title: str = "", 
-            select: str = ""
+            select: str = "",
+            daily_or_total: str = ""
     ):
         if not data:
             data = []
@@ -419,13 +476,16 @@ class Menu:
                     data=data,
                     items=items
                 )
+                if daily_or_total == "Daily":
+                    value1 = self.daily_or_total(arr=value1)
+                    value2 = self.daily_or_total(arr=value2)
                 plot_data(
                     x=self.treeview.times, 
                     y=self.find_proportion(
                         x=value2,
                         y=value1,
                     ),
-                    country=countries,
+                    country=f"{countries} ({daily_or_total})",
                     title=title
                 )
             elif select == "proportion-compare":
@@ -434,6 +494,9 @@ class Menu:
                     items=items,
                     compare=True
                 )
+                if daily_or_total == "Daily":
+                    value1 = self.daily_or_total(arr=value1)
+                    value2 = self.daily_or_total(arr=value2)
                 if 2 <= len(value1) < 6:
                     plot_data(
                         x=self.treeview.times,
@@ -441,7 +504,7 @@ class Menu:
                             x=value2,
                             y=value1,
                         ),
-                        country=countries,
+                        country=f"{countries} ({daily_or_total})",
                         title=title,
                         compare=True
                     )
@@ -454,29 +517,54 @@ class Menu:
                     )
             elif select == "increase_rate":
                 values = self.get_values(data=data, items=items)
-                self.create_toplevel(
-                    title=title,
-                    countries=countries,
-                    values=values
-                )
+                if daily_or_total == "Daily":
+                    values = self.daily_or_total(arr=values)
+                    self.create_toplevel(
+                        title=title,
+                        countries=f"{countries} ({daily_or_total})",
+                        daily_or_total=daily_or_total,
+                        values=values
+                    )
+                else:
+                    self.create_toplevel(
+                        title=title,
+                        countries=f"{countries} ({daily_or_total})",
+                        daily_or_total=daily_or_total,
+                        values=values
+                    )
             elif select == "increase_rate_proportion":
                 y, x = self.get_values_for_proportion(
                     data=data,
                     items=items
                 )
-                values = self.find_proportion(x=x, y=y)
-                self.create_toplevel(
-                    title=title,
-                    countries=countries,
-                    values=values,
-                    proportion=True
-                )
+                if daily_or_total == "Daily":
+                    x = self.daily_or_total(arr=x)
+                    y = self.daily_or_total(arr=y)
+                    values = self.find_proportion(x=x, y=y)
+                    self.create_toplevel(
+                        title=title,
+                        countries=f"{countries} ({daily_or_total})",
+                        daily_or_total=daily_or_total,
+                        values=values,
+                        proportion=True
+                    )
+                else:
+                    values = self.find_proportion(x=x, y=y)
+                    self.create_toplevel(
+                        title=title,
+                        countries=f"{countries} ({daily_or_total})",
+                        daily_or_total=daily_or_total,
+                        values=values,
+                        proportion=True
+                    )
             elif select == "view":
                 values = self.get_values(items=items, data=data)
+                if daily_or_total == "Daily":
+                    values = self.daily_or_total(arr=values)
                 plot_data(
                     x=self.treeview.times,
                     y=values,
-                    country=countries,
+                    country=f"{countries} ({daily_or_total})",
                     title=title,
                 )
             elif select == "view-compare":
@@ -485,11 +573,13 @@ class Menu:
                     data=data,
                     compare=True
                 )
+                if daily_or_total == "Daily":
+                    values = self.daily_or_total(arr=values)
                 if 2 <= len(values) < 6:
                     plot_data(
                         x=self.treeview.times,
                         y=values,
-                        country=countries,
+                        country=f"{countries} ({daily_or_total})",
                         title=title,
                         compare=True
                     )
