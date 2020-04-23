@@ -49,14 +49,14 @@ class Treeview(Tv):
             self.recovered_data = read_csv_file(filename=self.recovered)
             self.times = tuple(
                 dt.strptime(i + "20", "%m/%d/%Y") 
-                for i in self.confirmed_data[0][3:]
+                for i in self.confirmed_data[0][1:]
             )
-            self.columns = [i[:4] for i in self.confirmed_data[1:]]
+            self.columns = [i[0] for i in self.confirmed_data[1:]]
             for i, j in enumerate(self.confirmed_data[1:]):
                 self.insert(
                     parent="",
                     index=i,
-                    values=[j for j in self.columns[i]]
+                    values=self.columns[i]
                 )
             self.bind(
                 sequence="<Control-a>",

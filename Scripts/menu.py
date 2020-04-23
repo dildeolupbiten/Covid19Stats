@@ -308,18 +308,18 @@ class Menu:
                     if item == j[0]:
                         if isinstance(values, list):
                             values = array(
-                                [int(k) for k in j[3:]]
+                                [int(k) for k in j[1:]]
                             )
                         else:
                             values += array(
-                                [int(k) for k in j[3:]]
+                                [int(k) for k in j[1:]]
                             )
             return [int(i) for i in values]
         else:
             for item in items:
                 for i, j in enumerate(data[1:]):
                     if item == j[0]:
-                        values.append([int(k) for k in j[3:]])
+                        values.append([int(k) for k in j[1:]])
             return values
 
     def get_values_for_proportion(
