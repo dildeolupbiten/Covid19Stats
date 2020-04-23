@@ -25,15 +25,24 @@ def plot_data(
     ]
     countries = country.split(",")
     for i in range(len(y)):
-        ax.plot_date(
-            x=x,
-            y=y[i],
-            fmt="-",
-            color=colors[i],
-            label=countries[i].split("(")[0],
-            linewidth=0.7
-        )
-        if not compare:
+        if compare:
+            ax.plot_date(
+                x=x,
+                y=y[i],
+                fmt="-",
+                color=colors[i],
+                label=countries[i].split("(")[0],
+                linewidth=0.7
+            )
+        else:
+            ax.plot_date(
+                x=x,
+                y=y[i],
+                fmt="-",
+                color=colors[i],
+                label=country.split("(")[0],
+                linewidth=0.7
+            )
             ax.fill_between(
                 x,
                 y[i],
