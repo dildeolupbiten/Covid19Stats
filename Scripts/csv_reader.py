@@ -10,6 +10,7 @@ def read_csv_file(filename: str = ""):
         if index == 0:
             result.append([row[1]] + row[4:])
         else:
+            row[1] = row[1].replace(" ", "\ ")
             if row[1] in data:
                 data[row[1]] += array([int(i) for i in row[4:]])
             else:
